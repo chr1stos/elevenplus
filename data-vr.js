@@ -120,3 +120,123 @@ VR_PAPERS.push([
 {q:"Which word can go in front of both POT and CUP to make two new words?", opts:["milk","tea","egg","tin"], a:1, ex:"TEAPOT and TEACUP are both real words. (Eggcup works, but 'eggpot' is not a word.)"},
 {q:"Which word fits both meanings?  \"a season of the year\"  and  \"a coil of metal that bounces back\"", opts:["summer","spring","coil","fall"], a:1, ex:"SPRING is a season, and a SPRING is a bouncy metal coil."}
 ]);
+
+/* ---------------- PAPER 7 ---------------- */
+VR_PAPERS.push([
+{q:"Which word is closest in meaning to WEARY?", opts:["tired","bored","hungry","annoyed"], a:0, ex:"'Weary' means very tired."},
+{q:"Which word is closest in meaning to GIGANTIC?", opts:["clumsy","enormous","frightening","ancient"], a:1, ex:"'Gigantic' means extremely large — enormous."},
+{q:"Which word is most OPPOSITE in meaning to ARRIVE?", opts:["reach","leave","stay","enter"], a:1, ex:"To arrive is to reach a place; to leave is to go away from it."},
+{q:"Which word is most OPPOSITE in meaning to CRUEL?", opts:["fierce","kind","strict","selfish"], a:1, ex:"A cruel person causes pain; a kind person is gentle and caring."},
+{q:"Puppy is to dog as kitten is to …", opts:["mouse","kitten","cat","paw"], a:2, ex:"A puppy is a young dog; a kitten is a young cat."},
+{q:"Petal is to flower as feather is to …", opts:["wing","bird","sky","nest"], a:1, ex:"A flower is covered in petals; a bird is covered in feathers."},
+{q:"What comes next in this sequence?  C,  F,  I,  L,  ( ? )", opts:["N","O","P","M"], a:1, ex:"Each letter jumps forward three places: L(+3)=O."},
+{q:"What comes next in this sequence?  BA,  DC,  FE,  HG,  ( ? )", opts:["JI","IJ","JK","IH"], a:0, ex:"The pairs go up in twos but each pair is reversed: JI comes after HG."},
+{q:"In a secret code, LAMP is written as MBNQ. How would DESK be written in the same code?", opts:["EFTL","CDRJ","EFTK","EGTL"], a:0, ex:"Each letter moves forward one place: D→E, E→F, S→T, K→L, giving EFTL."},
+{q:"In a code, A=1, B=2, C=3 and so on. FROG is written 6-18-15-7. How would GOLD be written?", opts:["7-15-12-4","7-14-12-4","6-15-12-4","7-15-11-4"], a:0, ex:"G=7, O=15, L=12, D=4: 7-15-12-4."},
+{q:"A four-letter word is hidden between two words in this sentence:  \"The dog ran across the park.\"  Which word is it?", opts:["gran","grin","gram","grip"], a:0, ex:"The hidden word is G-R-A-N, bridging two words in the sentence."},
+{q:"A four-letter word is hidden between two words in this sentence:  \"Please hand over the map.\"  Which word is it?", opts:["dove","done","dime","dose"], a:0, ex:"The end of 'hand' and start of 'over' spell D-O-V-E: 'han(d ove)r'."},
+{q:"Which word is the odd one out?", opts:["sofa","chair","table","carpet","stool"], a:3, ex:"A carpet covers the floor; the others are furniture you sit at or on."},
+{q:"Which word is the odd one out?", opts:["red","blue","bright","green","yellow"], a:2, ex:"'Bright' describes how vivid a colour is; the others are actual colours."},
+{q:"Which word can go in front of both BOW and DROP to make two new words?", opts:["rain","sun","snow","tear"], a:0, ex:"RAINBOW and RAINDROP are both real words."},
+{q:"Which word fits both meanings?  \"a large body of salt water\"  and  \"to notice with your eyes\" (sounds the same)", opts:["lake","sea","see","view"], a:1, ex:"SEA is a large body of salt water, and it sounds exactly like SEE (to notice with your eyes)."}
+]);
+
+/* ---------------- PAPER 8 ---------------- */
+VR_PAPERS.push([
+{q:"Which word is closest in meaning to BRIEF?", opts:["short","boring","urgent","clear"], a:0, ex:"'Brief' means lasting only a short time — short."},
+{q:"Which word is closest in meaning to REPAIR?", opts:["break","fix","paint","clean"], a:1, ex:"To 'repair' something is to fix it."},
+{q:"Which word is most OPPOSITE in meaning to ROUGH?", opts:["bumpy","smooth","hard","sharp"], a:1, ex:"A rough surface is uneven; a smooth surface is even — opposites."},
+{q:"Which word is most OPPOSITE in meaning to PERMANENT?", opts:["lasting","solid","temporary","fixed"], a:2, ex:"'Permanent' means lasting forever; 'temporary' means lasting only a short time."},
+{q:"Hive is to bee as web is to …", opts:["fly","spider","net","silk"], a:1, ex:"A bee lives in a hive; a spider lives on a web."},
+{q:"Captain is to ship as pilot is to …", opts:["runway","aeroplane","sky","ticket"], a:1, ex:"A captain steers a ship; a pilot flies an aeroplane."},
+{q:"What comes next in this sequence?  A,  D,  G,  J,  ( ? )", opts:["L","M","N","K"], a:1, ex:"Each letter jumps forward three places: J(+3)=M."},
+{q:"What comes next in this sequence?  ZX,  YW,  XV,  WU,  ( ? )", opts:["VT","VU","UT","VS"], a:0, ex:"Both letters move back one each time: W→V and U→T, giving VT."},
+{q:"In a secret code, GIFT is written as EGDR. How would HAND be written in the same code?", opts:["FYLB","FZLB","GYLB","FYKB"], a:0, ex:"Each letter moves back two places: H→F, A→Y, N→L, D→B, giving FYLB."},
+{q:"In a code, A=1, B=2, C=3 and so on. 4-1-18-11 spells DARK. What does 12-1-13-16 spell?", opts:["LAMP","LIMP","LUMP","LAME"], a:0, ex:"12=L, 1=A, 13=M, 16=P, spelling LAMP."},
+{q:"A four-letter word is hidden between two words in this sentence:  \"Please hand over your ticket.\"  Which word is it?", opts:["dove","dime","dole","dusk"], a:0, ex:"The hidden word is D-O-V-E, bridging two words in the sentence."},
+{q:"A four-letter word is hidden between two words in this sentence:  \"Our team ate a huge lunch.\"  Which word is it?", opts:["mate","mile","mild","mole"], a:0, ex:"The hidden word is M-A-T-E, bridging two words in the sentence."},
+{q:"Which word is the odd one out?", opts:["hammer","saw", "drill","nail","screwdriver"], a:3, ex:"A nail is a fastening you use tools on; the others are all tools."},
+{q:"Which word is the odd one out?", opts:["Monday","Tuesday","January","Friday","Sunday"], a:2, ex:"January is a month; all the others are days of the week."},
+{q:"Which word can go in front of both PORT and SIDE to make two new words?", opts:["air","sea","car","road"], a:1, ex:"SEAPORT and SEASIDE are both real words."},
+{q:"Which word fits both meanings?  \"a flat surface you eat from\"  and  \"a chart of rows and columns\"", opts:["plate","board","table","desk"], a:2, ex:"A TABLE is a piece of furniture you eat at, and a TABLE is also a grid of information."}
+]);
+
+/* ---------------- PAPER 9 ---------------- */
+VR_PAPERS.push([
+{q:"Which word is closest in meaning to DAMP?", opts:["dry","moist","cold","dirty"], a:1, ex:"'Damp' means slightly wet — moist."},
+{q:"Which word is closest in meaning to REPLY?", opts:["question","answer","letter","message"], a:1, ex:"To 'reply' is to answer."},
+{q:"Which word is most OPPOSITE in meaning to WILD?", opts:["fierce","tame","free","natural"], a:1, ex:"A wild animal is untamed; a tame animal is gentle and trained."},
+{q:"Which word is most OPPOSITE in meaning to ACCEPT?", opts:["agree","refuse","receive","allow"], a:1, ex:"To accept is to say yes; to refuse is to say no."},
+{q:"Fish is to fin as bird is to …", opts:["beak","wing","nest","feather"], a:1, ex:"A fish uses a fin to move through water; a bird uses a wing to move through air."},
+{q:"Cub is to bear as calf is to …", opts:["sheep","cow","goat","horse"], a:1, ex:"A cub is a young bear; a calf is a young cow."},
+{q:"What comes next in this sequence?  E,  H,  K,  N,  ( ? )", opts:["P","Q","R","O"], a:1, ex:"Each letter jumps forward three places: N(+3)=Q."},
+{q:"What comes next in this sequence?  AC,  CE,  EG,  GI,  ( ? )", opts:["IK","HJ","IJ","JL"], a:0, ex:"Both letters jump forward two places: G(+2)=I and I(+2)=K, giving IK."},
+{q:"In a secret code, MILK is written as NJML. How would BOOK be written in the same code?", opts:["CPPL","APPL","CPPK","CQPL"], a:0, ex:"Each letter moves forward one place: B→C, O→P, O→P, K→L, giving CPPL."},
+{q:"In a code, A=1, B=2, C=3 and so on. SWIM is written 19-23-9-13. How would WISH be written?", opts:["23-9-19-8","23-8-19-9","22-9-19-8","23-9-18-8"], a:0, ex:"W=23, I=9, S=19, H=8: 23-9-19-8."},
+{q:"A four-letter word is hidden between two words in this sentence:  \"The chef instantly began to cook.\"  Which word is it?", opts:["fins","find","fine","fint"], a:0, ex:"The end of 'chef' and start of 'instantly' spell F-I-N-S: 'che(f ins)tantly'."},
+{q:"A four-letter word is hidden between two words in this sentence:  \"Give me at least three sweets.\"  Which word is it?", opts:["meat","melt","mist","mask"], a:0, ex:"The end of 'me' and start of 'at least' spell M-E-A-T: 'm(e at) least'."},
+{q:"Which word is the odd one out?", opts:["London","Paris","France","Rome","Madrid"], a:2, ex:"France is a country; all the others are capital cities."},
+{q:"Which word is the odd one out?", opts:["swim","run","jump","water","climb"], a:3, ex:"'Water' is a thing (a noun); all the others are actions (verbs)."},
+{q:"Which word can go in front of both PRINT and BALL to make two new words?", opts:["foot","hand","snow","play"], a:0, ex:"FOOTPRINT and FOOTBALL are both real words."},
+{q:"Which word fits both meanings?  \"a farm animal that gives wool\"  and  \"to move timidly\" (as in feeling ___ish)", opts:["sheep","goat","lamb","hen"], a:0, ex:"A SHEEP gives wool, and 'sheepish' means shy or timid — both come from SHEEP."}
+]);
+
+/* ---------------- PAPER 10 ---------------- */
+VR_PAPERS.push([
+{q:"Which word is closest in meaning to SWIFT?", opts:["slow","quick","steady","careful"], a:1, ex:"'Swift' means very fast — quick."},
+{q:"Which word is closest in meaning to TASK?", opts:["game","reward","job","rest"], a:2, ex:"A 'task' is a piece of work you have to do — a job."},
+{q:"Which word is most OPPOSITE in meaning to EMPTY?", opts:["hollow","full","open","clear"], a:1, ex:"Empty means containing nothing; full means containing as much as possible."},
+{q:"Which word is most OPPOSITE in meaning to ANCIENT?", opts:["old","recent","past","historic"], a:1, ex:"'Ancient' means from very long ago; 'recent' means from a short time ago."},
+{q:"Book is to library as painting is to …", opts:["artist","brush","gallery","frame"], a:2, ex:"Books are kept in a library; paintings are kept in a gallery."},
+{q:"Cygnet is to swan as duckling is to …", opts:["pond","goose","duck","chick"], a:2, ex:"A cygnet is a baby swan; a duckling is a baby duck."},
+{q:"What comes next in this sequence?  Z,  W,  T,  Q,  ( ? )", opts:["N","O","P","M"], a:0, ex:"Each letter jumps back three places: Q(−3)=N."},
+{q:"What comes next in this sequence?  DA,  EB,  FC,  GD,  ( ? )", opts:["HE","HF","IE","HD"], a:0, ex:"The first letter moves forward one (D,E,F,G,H) and the second moves forward one (A,B,C,D,E): HE."},
+{q:"In a secret code, JUMP is written as LWOR. How would WALK be written in the same code?", opts:["YCNM","XBNM","YCNL","ZCNM"], a:0, ex:"Each letter moves forward two places: W→Y, A→C, L→N, K→M, giving YCNM."},
+{q:"In a code, A=1, B=2, C=3 and so on. 3-15-12-4 spells COLD. What does 7-15-12-4 spell?", opts:["GOLD","BOLD","HOLD","FOLD"], a:0, ex:"7=G, 15=O, 12=L, 4=D, spelling GOLD."},
+{q:"A four-letter word is hidden between two words in this sentence:  \"They both index their notes.\"  Which word is it?", opts:["thin","thud","tusk","tint"], a:0, ex:"The hidden word is T-H-I-N, bridging two words in the sentence."},
+{q:"A four-letter word is hidden between two words in this sentence:  \"Give me at least three.\"  Which word is it?", opts:["meat","melt","mist","mask"], a:0, ex:"The hidden word is M-E-A-T, bridging two words in the sentence."},
+{q:"Which word is the odd one out?", opts:["glove","scarf","umbrella","hat","coat"], a:2, ex:"An umbrella is carried; the others are all worn on the body."},
+{q:"Which word is the odd one out?", opts:["mile","metre","litre","kilometre","inch"], a:2, ex:"A litre measures volume; all the others measure length or distance."},
+{q:"Which word can go in front of both LACE and STRING to make two new words?", opts:["boot","shoe","hair","neck"], a:1, ex:"SHOELACE and SHOESTRING are both real words."},
+{q:"Which word fits both meanings?  \"the part of your body on your shoulders\"  and  \"the person in charge of a school\"", opts:["chief","boss","head","top"], a:2, ex:"Your HEAD sits on your shoulders, and the HEAD is the person in charge of a school."}
+]);
+
+/* ---------------- PAPER 11 ---------------- */
+VR_PAPERS.push([
+{q:"Which word is closest in meaning to FAMOUS?", opts:["wealthy","well-known","talented","proud"], a:1, ex:"'Famous' means known by many people — well-known."},
+{q:"Which word is closest in meaning to CHILLY?", opts:["warm","cold","damp","windy"], a:1, ex:"'Chilly' means unpleasantly cold."},
+{q:"Which word is most OPPOSITE in meaning to LOOSE?", opts:["baggy","tight","free","slack"], a:1, ex:"Loose means not firmly fixed; tight means firmly fixed or close-fitting."},
+{q:"Which word is most OPPOSITE in meaning to ANCESTOR?", opts:["relative","descendant","parent","stranger"], a:1, ex:"An ancestor comes before you in your family; a descendant comes after you."},
+{q:"Knife is to cut as broom is to …", opts:["clean","sweep","dust","handle"], a:1, ex:"A knife is used to cut; a broom is used to sweep."},
+{q:"Herd is to cattle as flock is to …", opts:["fish","wolves","sheep","lions"], a:2, ex:"A group of cattle is a herd; a group of sheep is a flock."},
+{q:"What comes next in this sequence?  B,  F,  J,  N,  ( ? )", opts:["Q","R","S","P"], a:1, ex:"Each letter jumps forward four places: N(+4)=R."},
+{q:"What comes next in this sequence?  MN,  KP,  IR,  GT,  ( ? )", opts:["EV","FV","EW","EU"], a:0, ex:"The first letter moves back two (M,K,I,G,E) and the second moves forward two (N,P,R,T,V): EV."},
+{q:"In a secret code, GLASS is written as HMBTT. How would WATER be written in the same code?", opts:["XBUFS","VZSDQ","XBUFR","XCUFS"], a:0, ex:"Each letter moves forward one place: W→X, A→B, T→U, E→F, R→S, giving XBUFS."},
+{q:"In a code, A=1, B=2, C=3 and so on. PLANT is written 16-12-1-14-20. How would PLAN be written?", opts:["16-12-1-14","16-12-2-14","15-12-1-14","16-11-1-14"], a:0, ex:"P=16, L=12, A=1, N=14: 16-12-1-14."},
+{q:"A four-letter word is hidden between two words in this sentence:  \"The team ate lunch quickly.\"  Which word is it?", opts:["mate","meat","mata","mear"], a:0, ex:"The end of 'team' and start of 'ate' spell M-A-T-E: 'tea(m ate)'."},
+{q:"A four-letter word is hidden between two words in this sentence:  \"I hope net curtains will help.\"  Which word is it?", opts:["open","oven","omen","oval"], a:0, ex:"The end of 'hope' and start of 'net' spell O-P-E-N: 'h(ope net)'."},
+{q:"Which word is the odd one out?", opts:["oak","pine","birch","ivy","willow"], a:3, ex:"Ivy is a climbing plant; all the others are trees."},
+{q:"Which word is the odd one out?", opts:["shout","whisper","yell","scream","bellow"], a:1, ex:"To whisper is to speak very quietly; all the others mean to make a loud noise."},
+{q:"Which word can go in front of both PAPER and STAND to make two new words?", opts:["news","note","book","home"], a:0, ex:"NEWSPAPER and NEWSSTAND are both real words."},
+{q:"Which word fits both meanings?  \"a colour like the sky\"  and  \"feeling sad\"", opts:["grey","blue","dark","low"], a:1, ex:"BLUE is a colour like the sky, and to feel BLUE means to feel sad."}
+]);
+
+/* ---------------- PAPER 12 ---------------- */
+VR_PAPERS.push([
+{q:"Which word is closest in meaning to QUARREL?", opts:["chat","argument","promise","meeting"], a:1, ex:"A 'quarrel' is an angry disagreement — an argument."},
+{q:"Which word is closest in meaning to MEND?", opts:["break","repair","lose","build"], a:1, ex:"To 'mend' something is to repair it."},
+{q:"Which word is most OPPOSITE in meaning to SHALLOW?", opts:["wide","deep","narrow","calm"], a:1, ex:"Shallow water is not deep; the opposite is deep."},
+{q:"Which word is most OPPOSITE in meaning to ARTIFICIAL?", opts:["false","fake","natural","plastic"], a:2, ex:"'Artificial' means made by people; 'natural' means made by nature."},
+{q:"Clock is to time as thermometer is to …", opts:["heat","temperature","weather","glass"], a:1, ex:"A clock measures time; a thermometer measures temperature."},
+{q:"Wheel is to car as sail is to …", opts:["wind","boat","mast","rope"], a:1, ex:"A wheel helps a car move; a sail helps a boat move."},
+{q:"What comes next in this sequence?  Y,  U,  Q,  M,  ( ? )", opts:["I","J","K","H"], a:0, ex:"Each letter jumps back four places: M(−4)=I."},
+{q:"What comes next in this sequence?  AB,  BD,  CF,  DH,  ( ? )", opts:["EJ","EI","FJ","EK"], a:0, ex:"The first letter goes up by one (A,B,C,D,E) and the second goes up by two (B,D,F,H,J): EJ."},
+{q:"In a secret code, TRAIN is written as VTCKP. How would BRAKE be written in the same code?", opts:["DTCMG","CSBLF","DTCLG","DUCMG"], a:0, ex:"Each letter moves forward two places: B→D, R→T, A→C, K→M, E→G, giving DTCMG."},
+{q:"In a code, A=1, B=2, C=3 and so on. 13-15-21-19-5 spells MOUSE. What does 8-15-21-19-5 spell?", opts:["HOUSE","MOUSE","HORSE","HOSES"], a:0, ex:"8=H, 15=O, 21=U, 19=S, 5=E, spelling HOUSE."},
+{q:"A four-letter word is hidden between two words in this sentence:  \"Give me at least three sweets.\"  Which word is it?", opts:["meat","meet","mear","mead"], a:0, ex:"The end of 'me' and start of 'at least' spell M-E-A-T: 'm(e at) least'."},
+{q:"A four-letter word is hidden between two words in this sentence:  \"The dog rushed to the door.\"  Which word is it?", opts:["grum","grus","grut","grub"], a:1, ex:"The end of 'dog' and start of 'rushed' spell G-R-U-S: 'do(g rus)hed'."},
+{q:"Which word is the odd one out?", opts:["thumb","finger","glove","wrist","palm"], a:2, ex:"A glove is worn on the hand; all the others are parts of the hand or arm."},
+{q:"Which word is the odd one out?", opts:["car","bus","road","train","lorry"], a:2, ex:"A road is something you travel on; all the others are vehicles."},
+{q:"Which word can go in front of both FALL and FLAKE to make two new words?", opts:["rain","snow","water","ice"], a:1, ex:"SNOWFALL and SNOWFLAKE are both real words."},
+{q:"Which word fits both meanings?  \"the middle of an apple\"  and  \"the most important part of something\"", opts:["seed","core","heart","centre"], a:1, ex:"The CORE is the middle of an apple, and the CORE of something is its most important part."}
+]);

@@ -182,16 +182,27 @@ function bindTimerToggle(){
 function home(){
   const nWrong = wrong.length;
   const attempts = history.length;
+  const r = hasResume();
+  let resumeCard = '';
+  if(r){
+    const secName = r.mode==='full' ? ('Full mock · Paper '+(r.paper+1)) : (SEC[r.secs[0]].name+' · Paper '+(r.paper+1));
+    const where = r.started ? ('Section '+(r.si+1)+', question '+((r.qi||0)+1)) : 'not started yet';
+    resumeCard = `<button class="btn" id="goResume" style="border:2px solid var(--gold);background:#FFFBF0;">
+      <span class="em">⏸️</span>Resume unfinished paper<span class="note">${esc(secName)} · ${where}</span>
+      <span class="badge gold">GO</span></button>`;
+  }
   h(`
     <h1>11+ Trainer</h1>
     <p class="sub">Trafford Consortium practice · Target: <b style="color:var(--gold);">${TARGET}%+</b></p>
     ${timerToggleCard()}
+    ${resumeCard}
     <button class="btn" id="goFull"><span class="em">📝</span>Full mock exam<span class="note">All 4 sections · 65 questions · 50 minutes</span></button>
     <button class="btn" id="goSec"><span class="em">🎯</span>Practise one section<span class="note">English, Verbal, Non-Verbal or Maths</span></button>
     <button class="btn" id="goFix"><span class="em">🔧</span>Fix my mistakes<span class="note">Retry questions you got wrong</span>${nWrong?`<span class="badge">${nWrong}</span>`:''}</button>
     <button class="btn" id="goProg"><span class="em">📈</span>My progress<span class="note">Scores and history</span>${attempts?`<span class="badge gold">${attempts}</span>`:''}</button>
   `);
   bindTimerToggle();
+  if($('#goResume')) $('#goResume').onclick = resumeExam;
   $('#goFull').onclick = ()=>paperPicker('full');
   $('#goSec').onclick  = sectionPicker;
   $('#goFix').onclick  = mistakes;
@@ -201,7 +212,7 @@ function home(){
 function paperPicker(mode, sec){
   const title = mode==='full' ? 'Full mock exam' : SEC[sec].name;
   let cards='';
-  for(let p=0;p<6;p++){
+  for(let p=0;p<12;p++){
     const best = bestFor(p, mode, sec);
     cards += `<button class="pcard" data-p="${p}">
       <div class="t">Paper ${p+1}</div>
@@ -238,13 +249,75 @@ function sectionPicker(){
 let EX = null;      // exam state
 let tickId = null;
 
+/* ---------- crash-resume ---------- *
+ * We save the in-progress exam to localStorage whenever anything changes
+ * (an answer, moving question, starting a section, the timer ticking down).
+ * We store the number of seconds LEFT on the timer, not an absolute clock
+ * time, so a resume after a crash gives back the time that remained rather
+ * than counting time that passed while the app was closed.
+ * The saved state is cleared the moment an exam is finished or quit. */
+const RESUME_KEY = 'resume';
+let lastSaveT = 0;
+
+function saveResume(){
+  if(!EX) return;
+  // work out seconds left (only meaningful once a section has started & is timed)
+  let secsLeft = null;
+  if(EX.timed && EX.started && EX.deadline){
+    secsLeft = Math.max(0, Math.round((EX.deadline - Date.now())/1000));
+  }
+  store.set(RESUME_KEY, {
+    mode: EX.mode, paper: EX.paper, secs: EX.secs, si: EX.si,
+    qi: EX.qi||0, answers: EX.answers, timed: EX.timed,
+    started: !!EX.started, secsLeft, savedAt: Date.now()
+  });
+}
+function clearResume(){ store.set(RESUME_KEY, null); }
+function hasResume(){
+  const r = store.get(RESUME_KEY, null);
+  return (r && r.answers && typeof r.paper==='number') ? r : null;
+}
+
 function startExam(mode, paper, sec){
   const secs = mode==='full' ? SECTIONS.map(s=>s.key) : [sec];
-  EX = { mode, paper, secs, si:0, answers:{}, timed: settings.timer };
+  EX = { mode, paper, secs, si:0, answers:{}, timed: settings.timer, started:false, qi:0 };
   secs.forEach(k=>{ EX.answers[k] = new Array(DATA[k][paper].length).fill(null); });
+  saveResume();
   sectionIntro();
 }
+
+/* Rebuild EX from a saved snapshot and drop the user back where they were */
+function resumeExam(){
+  const r = hasResume();
+  if(!r){ home(); return; }
+  EX = { mode:r.mode, paper:r.paper, secs:r.secs, si:r.si||0,
+         answers:r.answers, timed:r.timed, started:r.started, qi:r.qi||0 };
+  if(EX.started){
+    // jump straight back into the questions, restoring the timer
+    if(EX.timed){
+      const left = (r.secsLeft!=null ? r.secsLeft : SEC[EX.secs[EX.si]].mins*60);
+      EX.deadline = Date.now() + left*1000;
+    }
+    renderQ();
+    startTick();
+  } else {
+    sectionIntro();
+  }
+}
+
 function stopTick(){ if(tickId){ clearInterval(tickId); tickId=null; } }
+function startTick(){
+  stopTick();
+  if(!EX.timed) return;
+  tickId = setInterval(()=>{
+    const left = (EX.deadline-Date.now())/1000;
+    const el = $('#tmr');
+    if(el){ el.textContent = fmtTime(left); el.classList.toggle('warn', left<=60); }
+    // persist roughly once a second so a crash loses at most ~1s of timer
+    if(Date.now()-lastSaveT > 1000){ lastSaveT = Date.now(); saveResume(); }
+    if(left<=0){ stopTick(); alert("⏱️ Time's up for this section!"); finishSection(); }
+  }, 250);
+}
 
 function sectionIntro(){
   stopTick();
@@ -267,20 +340,15 @@ function sectionIntro(){
   $('#bk').onclick = quitConfirm;
   $('#startSec').onclick = ()=>{
     EX.qi = 0;
+    EX.started = true;
     if(EX.timed) EX.deadline = Date.now() + s.mins*60*1000;
+    saveResume();
     renderQ();
-    if(EX.timed){
-      tickId = setInterval(()=>{
-        const left = (EX.deadline-Date.now())/1000;
-        const el = $('#tmr');
-        if(el){ el.textContent = fmtTime(left); el.classList.toggle('warn', left<=60); }
-        if(left<=0){ stopTick(); alert("⏱️ Time's up for this section!"); finishSection(); }
-      }, 250);
-    }
+    startTick();
   };
 }
 function quitConfirm(){
-  if(confirm('Leave this paper? Your answers so far will not be saved.')){ stopTick(); EX=null; home(); }
+  if(confirm('Leave this paper? Your progress on this paper will be cleared.')){ stopTick(); clearResume(); EX=null; home(); }
 }
 
 function renderQ(){
@@ -320,11 +388,12 @@ function renderQ(){
   $('#bk').onclick = quitConfirm;
   on('.opt','click', e=>{
     EX.answers[k][EX.qi] = +e.currentTarget.dataset.oi;
+    saveResume();
     renderQ();
   });
-  on('.dot','click', e=>{ EX.qi = +e.currentTarget.dataset.i; renderQ(); });
-  if($('#prev')) $('#prev').onclick = ()=>{ if(EX.qi>0){EX.qi--; renderQ();} };
-  if($('#next')) $('#next').onclick = ()=>{ EX.qi++; renderQ(); };
+  on('.dot','click', e=>{ EX.qi = +e.currentTarget.dataset.i; saveResume(); renderQ(); });
+  if($('#prev')) $('#prev').onclick = ()=>{ if(EX.qi>0){EX.qi--; saveResume(); renderQ();} };
+  if($('#next')) $('#next').onclick = ()=>{ EX.qi++; saveResume(); renderQ(); };
   if($('#fin')) $('#fin').onclick = ()=>{
     const blank = qs.length - EX.answers[k].filter(a=>a!==null).length;
     if(blank>0 && !confirm(blank+' question'+(blank>1?'s':'')+' unanswered. Finish anyway?')) return;
@@ -340,6 +409,7 @@ function finishSection(){
 
 function results(){
   stopTick();
+  clearResume();   // exam is done — no in-progress state to resume
   // score
   const secScores = {};
   let tot=0, totN=0;

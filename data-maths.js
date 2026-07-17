@@ -138,3 +138,141 @@ MAT_PAPERS.push([
 {q:"Which of these numbers is a prime number?", opts:["21","27","29","33"], a:2, ex:"29 has no factors other than 1 and itself. (21 = 3×7, 27 = 3×9, 33 = 3×11.)"},
 {q:"8 pizzas are each cut into 8 slices. 5 children eat 3 slices each. How many slices are left?", opts:["44","46","49","51"], a:2, ex:"8 × 8 = 64 slices. The children eat 5 × 3 = 15 slices. 64 − 15 = 49 left."}
 ]);
+
+/* ---------------- PAPER 7 ---------------- */
+MAT_PAPERS.push([
+{q:"5,309 + 3,784 = ?", opts:["9,093","9,083","8,093","9,193"], a:0, ex:"5,309 + 3,784 = 9,093. (5,309 + 3,800 = 9,109, then subtract 16.)"},
+{q:"68 × 7 = ?", opts:["466","476","486","496"], a:1, ex:"60 × 7 = 420 and 8 × 7 = 56, so 420 + 56 = 476."},
+{q:"7,000 − 2,846 = ?", opts:["4,154","4,254","4,144","5,154"], a:0, ex:"Count up: 2,846 + 154 = 3,000, then + 4,000 = 7,000. 154 + 4,000 = 4,154."},
+{q:"744 ÷ 6 = ?", opts:["114","124","134","126"], a:1, ex:"720 ÷ 6 = 120 and 24 ÷ 6 = 4, so 124."},
+{q:"What is ⅗ of 45?", opts:["18","24","27","30"], a:2, ex:"45 ÷ 5 = 9, so one fifth is 9. Three fifths = 9 × 3 = 27."},
+{q:"Which fraction is equivalent to ½?", opts:["3/5","5/10","4/6","2/3"], a:1, ex:"5/10 simplifies to ½ (divide top and bottom by 5)."},
+{q:"0.8 + 0.35 = ?", opts:["1.15","1.13","0.43","1.05"], a:0, ex:"0.80 + 0.35 = 1.15."},
+{q:"What is 20% of 150?", opts:["25","30","35","45"], a:1, ex:"10% of 150 = 15, so 20% = 30."},
+{q:"A lesson starts at 13:50 and lasts 55 minutes. What time does it end?", opts:["14:35","14:45","14:55","15:05"], a:1, ex:"13:50 + 10 min = 14:00, then + 45 min = 14:45."},
+{q:"A square has sides of 8 cm. What is its perimeter?", opts:["16 cm","24 cm","32 cm","64 cm"], a:2, ex:"Perimeter = 4 × 8 = 32 cm."},
+{q:"A rectangle is 9 cm long and 5 cm wide. What is its area?", opts:["14 cm²","28 cm²","40 cm²","45 cm²"], a:3, ex:"Area = 9 × 5 = 45 cm²."},
+{q:"Apples cost 42p each. How much do 5 apples cost?", opts:["£2.00","£2.10","£2.20","£1.90"], a:1, ex:"5 × 42p = 210p = £2.10."},
+{q:"What is the next number in this sequence?  4,  9,  14,  19,  ( ? )", opts:["23","24","25","26"], a:1, ex:"The sequence goes up in 5s: 19 + 5 = 24."},
+{q:"Two angles on a straight line: one is 125°. What is the other?", opts:["45°","55°","65°","75°"], a:1, ex:"Angles on a straight line add to 180°. 180 − 125 = 55°."},
+{q:"What is the mean of 8, 12, 6 and 14?", opts:["9","10","11","12"], a:1, ex:"8 + 12 + 6 + 14 = 40. Then 40 ÷ 4 = 10."},
+{q:"A shop sold ice creams over four days.<table><tr><th>Thu</th><th>Fri</th><th>Sat</th><th>Sun</th></tr><tr><td>30</td><td>45</td><td>62</td><td>58</td></tr></table>How many were sold on Saturday and Sunday together?", opts:["110","118","120","124"], a:2, ex:"62 + 58 = 120."},
+{q:"Convert 5,000 g into kilograms.", opts:["0.5 kg","5 kg","50 kg","500 kg"], a:1, ex:"1 kg = 1,000 g, so 5,000 g = 5 kg."},
+{q:"−6 + 10 = ?", opts:["4","−4","16","−16"], a:0, ex:"Start at −6 and count up 10: −6 → 0 is 6, then 4 more takes you to 4."},
+{q:"120 pencils are packed into boxes of 8. How many full boxes are there?", opts:["12","14","15","16"], a:2, ex:"120 ÷ 8 = 15 full boxes."}
+]);
+
+/* ---------------- PAPER 8 ---------------- */
+MAT_PAPERS.push([
+{q:"6,472 + 2,859 = ?", opts:["9,331","9,321","9,231","8,331"], a:0, ex:"6,472 + 2,859 = 9,331."},
+{q:"53 × 6 = ?", opts:["308","318","328","298"], a:1, ex:"50 × 6 = 300 and 3 × 6 = 18, so 318."},
+{q:"9,000 − 3,617 = ?", opts:["5,383","5,483","5,373","6,383"], a:0, ex:"Count up: 3,617 + 383 = 4,000, then + 5,000 = 9,000. 383 + 5,000 = 5,383."},
+{q:"992 ÷ 8 = ?", opts:["114","124","134","118"], a:1, ex:"800 ÷ 8 = 100 and 192 ÷ 8 = 24, so 124."},
+{q:"What is ⅜ of 64?", opts:["21","24","27","32"], a:1, ex:"64 ÷ 8 = 8, so one eighth is 8. Three eighths = 8 × 3 = 24."},
+{q:"Write 0.6 as a fraction in its simplest form.", opts:["6/10","3/5","2/3","1/6"], a:1, ex:"0.6 = 6/10 = 3/5 (divide top and bottom by 2)."},
+{q:"5.4 − 2.7 = ?", opts:["2.7","2.3","3.7","2.9"], a:0, ex:"5.4 − 2.7 = 2.7."},
+{q:"What is 60% of 80?", opts:["40","44","48","52"], a:2, ex:"10% of 80 = 8, so 60% = 8 × 6 = 48."},
+{q:"A journey starts at 15:40 and takes 1 hour 50 minutes. What time does it end?", opts:["17:20","17:30","17:40","16:30"], a:1, ex:"15:40 + 1 hour = 16:40, then + 50 min = 17:30."},
+{q:"An equilateral triangle has a perimeter of 27 cm. How long is each side?", opts:["7 cm","8 cm","9 cm","13.5 cm"], a:2, ex:"An equilateral triangle has 3 equal sides: 27 ÷ 3 = 9 cm."},
+{q:"A triangle has a base of 8 cm and a height of 5 cm. What is its area?", opts:["40 cm²","20 cm²","13 cm²","26 cm²"], a:1, ex:"Area = (base × height) ÷ 2 = (8 × 5) ÷ 2 = 20 cm²."},
+{q:"Zoe buys 3 drinks at £1.40 each. How much change from £5?", opts:["£0.60","£0.70","£0.80","£0.90"], a:2, ex:"3 × £1.40 = £4.20. £5.00 − £4.20 = £0.80."},
+{q:"What is the next number in this sequence?  2,  6,  18,  54,  ( ? )", opts:["108","152","162","216"], a:2, ex:"Each number is multiplied by 3: 54 × 3 = 162."},
+{q:"A triangle has angles of 40° and 75°. What is the third angle?", opts:["55°","65°","75°","85°"], a:1, ex:"180 − 40 − 75 = 65°."},
+{q:"What is the median of 12, 7, 9, 15 and 10?", opts:["9","10","12","11"], a:1, ex:"In order: 7, 9, 10, 12, 15. The middle value is 10."},
+{q:"Scores in a spelling test:<table><tr><th>Amy</th><th>Ben</th><th>Cal</th><th>Dot</th></tr><tr><td>18</td><td>15</td><td>20</td><td>13</td></tr></table>What is the range of the scores?", opts:["5","6","7","8"], a:2, ex:"Range = highest − lowest = 20 − 13 = 7."},
+{q:"Convert 3 litres into millilitres.", opts:["30 ml","300 ml","3,000 ml","30,000 ml"], a:2, ex:"1 litre = 1,000 ml, so 3 litres = 3,000 ml."},
+{q:"−10 + 4 = ?", opts:["6","−6","14","−14"], a:1, ex:"Start at −10 and count up 4: −10 → −6."},
+{q:"A baker makes 6 trays of 12 buns. She sells 59 buns. How many are left?", opts:["11","13","15","17"], a:1, ex:"6 × 12 = 72 buns. 72 − 59 = 13 left."}
+]);
+
+/* ---------------- PAPER 9 ---------------- */
+MAT_PAPERS.push([
+{q:"46 × 15 = ?", opts:["660","680","690","710"], a:2, ex:"46 × 15 = 46 × 10 + 46 × 5 = 460 + 230 = 690."},
+{q:"8,124 − 5,679 = ?", opts:["2,445","2,455","2,545","2,435"], a:0, ex:"Count up: 5,679 + 321 = 6,000, then + 2,124 = 8,124. 321 + 2,124 = 2,445."},
+{q:"4,935 ÷ 7 = ?", opts:["695","705","715","685"], a:1, ex:"4,900 ÷ 7 = 700 and 35 ÷ 7 = 5, so 705."},
+{q:"¾ − ¼ = ?", opts:["½","¼","1","2/8"], a:0, ex:"¾ − ¼ = 2/4 = ½."},
+{q:"What is ⅝ of 40?", opts:["20","24","25","30"], a:2, ex:"40 ÷ 8 = 5, so one eighth is 5. Five eighths = 5 × 5 = 25."},
+{q:"Write 0.35 as a fraction in its simplest form.", opts:["35/100","7/20","3/5","1/3"], a:1, ex:"0.35 = 35/100 = 7/20 (divide top and bottom by 5)."},
+{q:"What is 12% of 50?", opts:["4","5","6","8"], a:2, ex:"1% of 50 = 0.5, so 12% = 0.5 × 12 = 6."},
+{q:"36 marbles are shared in the ratio 2 : 7. How many are in the larger share?", opts:["8","21","24","28"], a:3, ex:"2 + 7 = 9 parts, so each part is 36 ÷ 9 = 4. The larger share is 7 × 4 = 28."},
+{q:"What is 'twenty past eight in the morning' in 24-hour time?", opts:["08:20","20:20","08:40","18:20"], a:0, ex:"Twenty past eight in the morning is 8:20 am = 08:20."},
+{q:"A rectangle has an area of 72 cm² and a length of 9 cm. What is its width?", opts:["7 cm","8 cm","9 cm","63 cm"], a:1, ex:"Width = area ÷ length = 72 ÷ 9 = 8 cm."},
+{q:"What is the volume of a box measuring 5 cm × 3 cm × 4 cm?", opts:["12 cm³","40 cm³","60 cm³","23 cm³"], a:2, ex:"Volume = 5 × 3 × 4 = 60 cm³."},
+{q:"Tickets cost £7.25 each. How much for 4 tickets?", opts:["£28.00","£29.00","£28.50","£29.50"], a:1, ex:"4 × £7.25 = £29.00 (4 × £7 = £28, plus 4 × 25p = £1)."},
+{q:"What is the next number in this sequence?  1,  2,  4,  7,  11,  ( ? )", opts:["14","15","16","17"], a:2, ex:"The jumps grow by one each time: +1, +2, +3, +4, then +5. 11 + 5 = 16."},
+{q:"Angles around a point are 90°, 130° and one more. What is the missing angle?", opts:["120°","130°","140°","150°"], a:2, ex:"Angles around a point add to 360°. 360 − 90 − 130 = 140°."},
+{q:"What is the mode of 4, 6, 6, 8, 4, 6, 9?", opts:["4","6","8","9"], a:1, ex:"6 appears three times — more often than any other value."},
+{q:"A survey of favourite sports:<table><tr><th>Football</th><th>Tennis</th><th>Swimming</th><th>Cricket</th></tr><tr><td>22</td><td>14</td><td>18</td><td>11</td></tr></table>How many children were surveyed in total?", opts:["63","65","67","69"], a:1, ex:"22 + 14 + 18 + 11 = 65."},
+{q:"Convert 2.7 km into metres.", opts:["27 m","270 m","2,700 m","27,000 m"], a:2, ex:"1 km = 1,000 m, so 2.7 km = 2,700 m."},
+{q:"−4 − 5 = ?", opts:["1","−1","9","−9"], a:3, ex:"Start at −4 and go down 5 more: −4 → −9."},
+{q:"A coach holds 52 passengers. How many coaches are needed for 315 people?", opts:["6","7","8","9"], a:1, ex:"315 ÷ 52 = 6 remainder 3, so 7 coaches are needed (6 full coaches leave 3 people needing a 7th)."}
+]);
+
+/* ---------------- PAPER 10 ---------------- */
+MAT_PAPERS.push([
+{q:"3,948 + 4,167 = ?", opts:["8,115","8,105","8,015","8,125"], a:0, ex:"3,948 + 4,167 = 8,115."},
+{q:"92 × 6 = ?", opts:["542","552","562","572"], a:1, ex:"90 × 6 = 540 and 2 × 6 = 12, so 552."},
+{q:"6,105 − 3,428 = ?", opts:["2,677","2,687","2,777","2,667"], a:0, ex:"Count up: 3,428 + 572 = 4,000, then + 2,105 = 6,105. 572 + 2,105 = 2,677."},
+{q:"876 ÷ 4 = ?", opts:["209","219","221","218"], a:1, ex:"800 ÷ 4 = 200 and 76 ÷ 4 = 19, so 219."},
+{q:"What is ⅞ of 48?", opts:["36","40","42","44"], a:2, ex:"48 ÷ 8 = 6, so one eighth is 6. Seven eighths = 6 × 7 = 42."},
+{q:"Which of these numbers is the largest?", opts:["0.4","0.39","0.404","0.41"], a:3, ex:"As thousandths: 0.400, 0.390, 0.404, 0.410 — the largest is 0.41."},
+{q:"2.5 × 6 = ?", opts:["12","13","15","16"], a:2, ex:"2 × 6 = 12 and 0.5 × 6 = 3, so 12 + 3 = 15."},
+{q:"What is 35% of 80?", opts:["24","26","28","32"], a:2, ex:"10% of 80 = 8, so 30% = 24; 5% = 4; 35% = 24 + 4 = 28."},
+{q:"A train leaves at 08:37 and arrives at 10:09. How long is the journey?", opts:["1 h 22 min","1 h 32 min","1 h 42 min","2 h 32 min"], a:1, ex:"08:37 to 10:00 is 1 hour 23 minutes... 08:37 → 09:37 is 1 hour, then to 10:09 is 32 minutes more: 1 hour 32 minutes."},
+{q:"A regular hexagon has sides of 6 cm. What is its perimeter?", opts:["30 cm","36 cm","42 cm","24 cm"], a:1, ex:"A hexagon has 6 equal sides: 6 × 6 = 36 cm."},
+{q:"A rectangle is 15 cm long and 6 cm wide. What is its area?", opts:["42 cm²","80 cm²","90 cm²","96 cm²"], a:2, ex:"Area = 15 × 6 = 90 cm²."},
+{q:"Max saves £4.25 each week. How much after 6 weeks?", opts:["£24.50","£25.50","£26.50","£25.00"], a:1, ex:"£4.25 × 6 = £25.50 (£4 × 6 = £24, plus 25p × 6 = £1.50)."},
+{q:"What is the next number in this sequence?  3,  7,  15,  31,  ( ? )", opts:["47","62","63","64"], a:2, ex:"Each number is doubled then 1 is added: 31 × 2 + 1 = 63."},
+{q:"An isosceles triangle has a top angle of 50°. What is each equal base angle?", opts:["55°","60°","65°","70°"], a:2, ex:"180 − 50 = 130 for the two equal angles. 130 ÷ 2 = 65°."},
+{q:"What is the mean of 20, 24, 22 and 26?", opts:["22","23","24","25"], a:1, ex:"20 + 24 + 22 + 26 = 92. Then 92 ÷ 4 = 23."},
+{q:"Books read by four children this month:<table><tr><th>Eve</th><th>Fin</th><th>Gus</th><th>Hana</th></tr><tr><td>7</td><td>12</td><td>4</td><td>9</td></tr></table>How many more books did Fin read than Gus?", opts:["6","7","8","9"], a:2, ex:"12 − 4 = 8 books."},
+{q:"Convert 0.4 kg into grams.", opts:["40 g","400 g","4,000 g","4 g"], a:1, ex:"1 kg = 1,000 g, so 0.4 kg = 400 g."},
+{q:"The temperature is 3°C and falls by 8 degrees. What is the new temperature?", opts:["−5°C","5°C","−4°C","−6°C"], a:0, ex:"3 − 8: going down 3 reaches 0, then 5 more reaches −5°C."},
+{q:"A jug holds 2 litres. How many 250 ml glasses can be filled from it?", opts:["6","7","8","9"], a:2, ex:"2 litres = 2,000 ml. 2,000 ÷ 250 = 8 glasses."}
+]);
+
+/* ---------------- PAPER 11 ---------------- */
+MAT_PAPERS.push([
+{q:"4,687 + 3,558 = ?", opts:["8,245","8,235","8,145","8,255"], a:0, ex:"4,687 + 3,558 = 8,245."},
+{q:"74 × 8 = ?", opts:["582","592","602","572"], a:1, ex:"70 × 8 = 560 and 4 × 8 = 32, so 592."},
+{q:"8,203 − 4,756 = ?", opts:["3,447","3,457","3,547","3,437"], a:0, ex:"Count up: 4,756 + 244 = 5,000, then + 3,203 = 8,203. 244 + 3,203 = 3,447."},
+{q:"1,275 ÷ 5 = ?", opts:["245","255","265","251"], a:1, ex:"1,250 ÷ 5 = 250 and 25 ÷ 5 = 5, so 255."},
+{q:"What is 4/7 of 63?", opts:["28","32","36","40"], a:2, ex:"63 ÷ 7 = 9, so one seventh is 9. Four sevenths = 9 × 4 = 36."},
+{q:"Simplify 16/20 as far as possible.", opts:["8/10","4/5","3/4","2/3"], a:1, ex:"Divide top and bottom by 4: 16 ÷ 4 = 4 and 20 ÷ 4 = 5, giving 4/5."},
+{q:"15.6 ÷ 4 = ?", opts:["3.9","3.6","4.1","3.8"], a:0, ex:"15.6 ÷ 4 = 3.9 (15.6 ÷ 4: 16 ÷ 4 = 4, adjust: 3.9)."},
+{q:"What is 8% of 200?", opts:["12","14","16","18"], a:2, ex:"1% of 200 = 2, so 8% = 2 × 8 = 16."},
+{q:"A film ends at 20:05 and lasted 1 hour 40 minutes. What time did it start?", opts:["18:25","18:15","18:35","19:25"], a:0, ex:"Go back 1 hour from 20:05 to 19:05, then back 40 minutes to 18:25."},
+{q:"A rectangle is 14 cm long and 9 cm wide. What is its perimeter?", opts:["23 cm","46 cm","126 cm","92 cm"], a:1, ex:"Perimeter = 2 × (14 + 9) = 2 × 23 = 46 cm."},
+{q:"The point (4, 2) is moved 3 left and 5 up. What are its new coordinates?", opts:["(1, 7)","(7, 7)","(1, 3)","(7, 3)"], a:0, ex:"Left 3: 4 − 3 = 1. Up 5: 2 + 5 = 7. New point: (1, 7)."},
+{q:"Crayons cost 35p each. How much do 6 cost, and what change from £5?", opts:["£2.90 change","£2.80 change","£3.00 change","£2.70 change"], a:0, ex:"6 × 35p = 210p = £2.10. Change = £5.00 − £2.10 = £2.90."},
+{q:"What is the next number in this sequence?  1,  8,  27,  64,  ( ? )", opts:["100","121","125","144"], a:2, ex:"These are the cube numbers: 1³, 2³, 3³, 4³, so next is 5³ = 125."},
+{q:"A right angle is split into two parts. One is 62°. What is the other?", opts:["18°","28°","38°","118°"], a:1, ex:"A right angle is 90°. 90 − 62 = 28°."},
+{q:"The mean of four numbers is 15. Three of them are 12, 16 and 20. What is the fourth?", opts:["10","12","14","16"], a:1, ex:"Total = 4 × 15 = 60. The three given total 48, so the fourth is 60 − 48 = 12."},
+{q:"Rainfall over four days (mm):<table><tr><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th></tr><tr><td>6</td><td>11</td><td>3</td><td>8</td></tr></table>What was the total rainfall?", opts:["26 mm","28 mm","30 mm","24 mm"], a:1, ex:"6 + 11 + 3 + 8 = 28 mm."},
+{q:"Convert 6 cm 5 mm into millimetres.", opts:["56 mm","65 mm","605 mm","650 mm"], a:1, ex:"6 cm = 60 mm, plus 5 mm = 65 mm."},
+{q:"−2 − 7 = ?", opts:["5","−5","9","−9"], a:3, ex:"Start at −2 and go down 7 more: −2 → −9."},
+{q:"A gardener plants 8 rows of 15 flowers. If 23 flowers do not grow, how many grow successfully?", opts:["87","97","103","107"], a:1, ex:"8 × 15 = 120 flowers. 120 − 23 = 97 grow."}
+]);
+
+/* ---------------- PAPER 12 ---------------- */
+MAT_PAPERS.push([
+{q:"5,672 + 3,749 = ?", opts:["9,421","9,411","9,321","9,431"], a:0, ex:"5,672 + 3,749 = 9,421."},
+{q:"63 × 9 = ?", opts:["557","567","577","547"], a:1, ex:"63 × 9 = 63 × 10 − 63 = 630 − 63 = 567."},
+{q:"7,401 − 3,825 = ?", opts:["3,576","3,586","3,676","3,566"], a:0, ex:"Count up: 3,825 + 175 = 4,000, then + 3,401 = 7,401. 175 + 3,401 = 3,576."},
+{q:"1,088 ÷ 8 = ?", opts:["126","136","146","134"], a:1, ex:"800 ÷ 8 = 100 and 288 ÷ 8 = 36, so 136."},
+{q:"What is 5/6 of 66?", opts:["50","55","60","44"], a:1, ex:"66 ÷ 6 = 11, so one sixth is 11. Five sixths = 11 × 5 = 55."},
+{q:"Which of these fractions is the largest?", opts:["½","⅗","⅔","7/12"], a:2, ex:"As twelfths: ½ = 6/12, ⅗ = 7.2/12, ⅔ = 8/12, 7/12 = 7/12. The largest is ⅔."},
+{q:"7.05 + 2.8 = ?", opts:["9.85","9.13","9.35","7.85"], a:0, ex:"7.05 + 2.80 = 9.85."},
+{q:"What is 90% of 60?", opts:["48","52","54","56"], a:2, ex:"10% of 60 = 6, so 90% = 60 − 6 = 54."},
+{q:"How many minutes from 09:50 to 12:15?", opts:["135","140","145","155"], a:2, ex:"09:50 to 12:50 is 3 hours = 180 minutes, then back 35 minutes: 145 minutes."},
+{q:"A triangle has a base of 14 cm and a height of 6 cm. What is its area?", opts:["84 cm²","42 cm²","40 cm²","20 cm²"], a:1, ex:"Area = (base × height) ÷ 2 = (14 × 6) ÷ 2 = 42 cm²."},
+{q:"£72 is shared in the ratio 3 : 5. How much is the larger share?", opts:["£27","£40","£45","£48"], a:2, ex:"3 + 5 = 8 parts, so each part is £72 ÷ 8 = £9. Larger share = 5 × £9 = £45."},
+{q:"What is the next number in this sequence?  144,  121,  100,  81,  ( ? )", opts:["49","60","64","72"], a:2, ex:"These are square numbers going down: 12², 11², 10², 9², then 8² = 64."},
+{q:"Three angles of a quadrilateral are 100°, 95° and 70°. What is the fourth?", opts:["85°","90°","95°","105°"], a:2, ex:"Angles in a quadrilateral add to 360°. 360 − 100 − 95 − 70 = 95°."},
+{q:"The mean of five numbers is 20. Four of them are 15, 22, 18 and 25. What is the fifth?", opts:["18","20","22","24"], a:1, ex:"Total = 5 × 20 = 100. The four given total 80, so the fifth is 100 − 80 = 20."},
+{q:"A charity walk raised money over four days.<table><tr><th>Day 1</th><th>Day 2</th><th>Day 3</th><th>Day 4</th></tr><tr><td>£85</td><td>£120</td><td>£95</td><td>£100</td></tr></table>How much was raised altogether?", opts:["£380","£390","£400","£410"], a:2, ex:"85 + 120 + 95 + 100 = £400."},
+{q:"How many millimetres are there in 9 cm 7 mm?", opts:["97 mm","907 mm","970 mm","79 mm"], a:0, ex:"9 cm = 90 mm, plus 7 mm = 97 mm."},
+{q:"Which of these is a prime number?", opts:["39","51","53","57"], a:2, ex:"53 has no factors other than 1 and itself. (39 = 3×13, 51 = 3×17, 57 = 3×19.)"},
+{q:"6 boxes each hold 9 packs, and each pack has 4 pens. How many pens in total?", opts:["196","206","216","226"], a:2, ex:"6 × 9 = 54 packs. 54 × 4 = 216 pens."},
+{q:"A recipe for 4 people needs 300 g of flour. How much flour is needed for 6 people?", opts:["400 g","450 g","500 g","350 g"], a:1, ex:"300 g ÷ 4 = 75 g per person. For 6 people: 75 × 6 = 450 g."}
+]);

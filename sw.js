@@ -1,4 +1,4 @@
-const CACHE = 'ep11-v1';
+const CACHE = 'ep11-v2';
 const FILES = [
   './',
   './index.html',
