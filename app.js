@@ -23,7 +23,37 @@ const store = {
 let settings = store.get('settings', {timer:true});
 let history  = store.get('history', []);
 let wrong    = store.get('wrong', []);   // [{sec,paper,qi}]
-const saveAll = ()=>{ store.set('settings',settings); store.set('history',history); store.set('wrong',wrong); };
+let streak   = store.get('streak', {count:0, last:null});   // daily practice streak
+let paperlog = store.get('paperlog', []); // logged paper-mock scores [{date,label,sec,pct}]
+const saveAll = ()=>{ store.set('settings',settings); store.set('history',history); store.set('wrong',wrong); store.set('streak',streak); store.set('paperlog',paperlog); };
+
+/* ---------- daily streak ---------- */
+function todayStr(){ const d=new Date(); return d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate(); }
+function dayNumber(dateStr){ const [y,m,d]=dateStr.split('-').map(Number); return Math.floor(Date.UTC(y,m-1,d)/86400000); }
+function markPractisedToday(){
+  const t = todayStr();
+  if(streak.last === t) return;                 // already counted today
+  if(streak.last && dayNumber(t)-dayNumber(streak.last)===1) streak.count += 1;  // consecutive day
+  else streak.count = 1;                          // first day, or a gap resets it
+  streak.last = t;
+  store.set('streak', streak);
+}
+function currentStreak(){
+  if(!streak.last) return 0;
+  const gap = dayNumber(todayStr()) - dayNumber(streak.last);
+  return gap<=1 ? streak.count : 0;              // streak lapses if a whole day is missed
+}
+/* Which section is weakest, from recent per-section results (app + logged paper mocks) */
+function weakestSection(){
+  const agg={}; SECTIONS.forEach(s=>agg[s.key]={sum:0,n:0});
+  history.slice(-12).forEach(a=>{
+    if(a.secScores){ Object.keys(a.secScores).forEach(k=>{ const sc=a.secScores[k]; agg[k].sum+=100*sc.c/sc.n; agg[k].n++; }); }
+  });
+  paperlog.slice(-12).forEach(p=>{ if(p.sec && agg[p.sec]){ agg[p.sec].sum+=p.pct; agg[p.sec].n++; } });
+  let worst=null, worstAvg=101;
+  SECTIONS.forEach(s=>{ if(agg[s.key].n>0){ const av=agg[s.key].sum/agg[s.key].n; if(av<worstAvg){worstAvg=av; worst=s.key;} } });
+  return worst; // may be null if nothing logged yet
+}
 
 /* ---------- helpers ---------- */
 function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
@@ -191,21 +221,47 @@ function home(){
       <span class="em">⏸️</span>Resume unfinished paper<span class="note">${esc(secName)} · ${where}</span>
       <span class="badge gold">GO</span></button>`;
   }
+
+  // streak + today's focus
+  const st = currentStreak();
+  const weak = weakestSection();
+  const done = streak.last === todayStr();
+  const focusName = weak ? SEC[weak].name : 'Non-Verbal Reasoning';
+  const focusMsg = done
+    ? `Nice — practised today! ${st>1?('🔥 '+st+'-day streak'):'Streak started 🔥'}`
+    : (st>0 ? `🔥 ${st}-day streak — keep it going!` : `Let's start a streak today 🔥`);
+  const streakCard = `<div class="card" style="background:linear-gradient(180deg,#FFF9EC,#FFFDF7);border:1px solid #F0DDA8;">
+      <div style="display:flex;align-items:center;gap:12px;">
+        <div style="font-size:30px;">${done?'✅':'🔥'}</div>
+        <div style="flex:1;">
+          <div style="font-weight:800;color:var(--ink);font-size:15px;">${focusMsg}</div>
+          <div class="sub" style="margin:2px 0 0;">Today's focus: <b>${focusName}</b>${weak?' (weakest lately)':''}</div>
+        </div>
+      </div>
+      <button class="primary" id="goToday" style="margin-top:10px;">Practise ${esc(focusName)} ▶</button>
+    </div>`;
+
   h(`
     <h1>11+ Trainer</h1>
     <p class="sub">Trafford Consortium practice · Target: <b style="color:var(--gold);">${TARGET}%+</b></p>
+    ${streakCard}
     ${timerToggleCard()}
     ${resumeCard}
     <button class="btn" id="goFull"><span class="em">📝</span>Full mock exam<span class="note">All 4 sections · 65 questions · 50 minutes</span></button>
     <button class="btn" id="goSec"><span class="em">🎯</span>Practise one section<span class="note">English, Verbal, Non-Verbal or Maths</span></button>
+    <button class="btn" id="goWeak"><span class="em">🎯</span>Focus on my weak spot<span class="note">${weak?('Targets '+SEC[weak].name):'NVR &amp; Maths technique'}</span>${weak?`<span class="badge b-${SEC[weak].cls}" style="background:var(--gold);">!</span>`:''}</button>
     <button class="btn" id="goFix"><span class="em">🔧</span>Fix my mistakes<span class="note">Retry questions you got wrong</span>${nWrong?`<span class="badge">${nWrong}</span>`:''}</button>
-    <button class="btn" id="goProg"><span class="em">📈</span>My progress<span class="note">Scores and history</span>${attempts?`<span class="badge gold">${attempts}</span>`:''}</button>
+    <button class="btn" id="goLog"><span class="em">✍️</span>Log a paper mock<span class="note">Add scores from your printed papers</span>${paperlog.length?`<span class="badge gold">${paperlog.length}</span>`:''}</button>
+    <button class="btn" id="goProg"><span class="em">📈</span>My progress<span class="note">Scores and history</span>${attempts||paperlog.length?`<span class="badge gold">${attempts+paperlog.length}</span>`:''}</button>
   `);
   bindTimerToggle();
   if($('#goResume')) $('#goResume').onclick = resumeExam;
+  $('#goToday').onclick = ()=>paperPicker('section', weak || 'nvr');
   $('#goFull').onclick = ()=>paperPicker('full');
   $('#goSec').onclick  = sectionPicker;
+  $('#goWeak').onclick = ()=>paperPicker('section', weak || 'nvr');
   $('#goFix').onclick  = mistakes;
+  $('#goLog').onclick  = logPaper;
   $('#goProg').onclick = progress;
 }
 
@@ -427,7 +483,7 @@ function results(){
   const pct = Math.round(100*tot/totN);
   const attempt = { date: Date.now(), mode: EX.mode, paper: EX.paper, sec: EX.mode==='section'?EX.secs[0]:null,
     pct, tot, totN, secScores };
-  history.push(attempt); saveAll();
+  history.push(attempt); markPractisedToday(); saveAll();
 
   const hit = pct>=TARGET;
   const R=52, C=2*Math.PI*R;
@@ -545,21 +601,84 @@ function retry(sec, paper, qi){
   draw();
 }
 
+/* ---------- log a paper mock ---------- */
+function logPaper(){
+  // options: whole mock (overall %) or a single section
+  const secOpts = `<option value="">Whole mock (overall %)</option>` +
+    SECTIONS.map(s=>`<option value="${s.key}">${s.name}</option>`).join('');
+  h(`
+    <div class="topbar"><button class="back" id="bk">←</button><div class="grow">Log a paper mock</div></div>
+    <p class="sub">Add a score from a printed paper (e.g. Newell, Bond, CGP) so it shows in your progress alongside the app.</p>
+    <div class="card">
+      <label class="lbl">What did he do?</label>
+      <select id="lsec" class="inp">${secOpts}</select>
+      <label class="lbl">Score</label>
+      <div style="display:flex;gap:10px;align-items:center;">
+        <input id="lpct" class="inp" type="number" min="0" max="100" inputmode="numeric" placeholder="e.g. 78" style="flex:1;">
+        <span style="font-weight:800;color:var(--ink);font-size:18px;">%</span>
+      </div>
+      <div class="sub" style="margin:6px 0 0;">Or enter marks: <input id="lgot" class="inp mini" type="number" min="0" inputmode="numeric" placeholder="got"> / <input id="ltot" class="inp mini" type="number" min="1" inputmode="numeric" placeholder="total"></div>
+      <label class="lbl" style="margin-top:12px;">Label (optional)</label>
+      <input id="llbl" class="inp" type="text" placeholder="e.g. Newell mock 3, Bond paper 5">
+      <button class="primary" id="save" style="margin-top:14px;">Save score</button>
+    </div>
+    ${paperlog.length?`<div class="card"><b>Logged paper mocks</b>${
+      paperlog.slice().reverse().slice(0,15).map((p,ri)=>{
+        const idx = paperlog.length-1-ri;
+        const d=new Date(p.date);
+        const what = p.sec?SEC[p.sec].name:'Whole mock';
+        return `<div class="secrow"><span>${d.getDate()}/${d.getMonth()+1} · ${what}${p.label?' · '+esc(p.label):''}</span>
+          <span style="display:flex;align-items:center;gap:10px;">
+            <span class="sc" style="color:${p.pct>=TARGET?'var(--ok)':(p.pct>=70?'var(--gold)':'var(--bad)')};">${p.pct}%</span>
+            <button class="delx" data-i="${idx}" title="Delete" style="border:none;background:none;color:var(--bad);font-size:18px;cursor:pointer;">×</button>
+          </span></div>`;
+      }).join('')
+    }</div>`:''}
+  `);
+  $('#bk').onclick = home;
+  // marks -> percent helper
+  const syncPct = ()=>{
+    const g=parseFloat($('#lgot').value), t=parseFloat($('#ltot').value);
+    if(g>=0 && t>0){ $('#lpct').value = Math.round(100*g/t); }
+  };
+  $('#lgot').addEventListener('input', syncPct);
+  $('#ltot').addEventListener('input', syncPct);
+  $('#save').onclick = ()=>{
+    let pct = parseFloat($('#lpct').value);
+    if(!(pct>=0 && pct<=100)){ alert('Please enter a score between 0 and 100 (or fill in marks got / total).'); return; }
+    pct = Math.round(pct);
+    paperlog.push({ date: Date.now(), sec: $('#lsec').value||null, pct, label: $('#llbl').value.trim() });
+    markPractisedToday(); saveAll();
+    logPaper();  // refresh to show the new entry
+  };
+  on('.delx','click', e=>{
+    const i = +e.currentTarget.dataset.i;
+    if(confirm('Delete this logged score?')){ paperlog.splice(i,1); saveAll(); logPaper(); }
+  });
+}
+
 /* ---------- progress ---------- */
 function progress(){
-  if(history.length===0){
+  if(history.length===0 && paperlog.length===0){
     h(`<div class="topbar"><button class="back" id="bk">←</button><div class="grow">My progress</div></div>
-       <div class="card empty">No papers done yet.<br>Your scores will appear here after your first paper.</div>`);
+       <div class="card empty">No papers done yet.<br>Your scores will appear here after your first paper — on the app or logged from a printed mock.</div>`);
     $('#bk').onclick = home; return;
   }
-  const recent = history.slice(-12);
+  // combined timeline: app attempts + logged paper mocks, by date
+  const timeline = [
+    ...history.map(a=>({date:a.date, pct:a.pct, tag:'P'+(a.paper+1)+(a.mode==='section'?'·'+SEC[a.sec].em:''), src:'app'})),
+    ...paperlog.map(p=>({date:p.date, pct:p.pct, tag:(p.sec?SEC[p.sec].em:'📄'), src:'paper'}))
+  ].sort((a,b)=>a.date-b.date);
+  const recent = timeline.slice(-12);
   const bw=46, gap=12, W=Math.max(320, recent.length*(bw+gap)+30), H=190, base=150;
   let bars='';
   recent.forEach((a,i)=>{
     const x=20+i*(bw+gap), bh=Math.max(3, a.pct/100*120), col = a.pct>=TARGET?'var(--ok)':(a.pct>=70?'var(--gold)':'#C7CEDF');
+    const marker = a.src==='paper' ? `<circle cx="${x+bw/2}" cy="${base-bh-20}" r="3" fill="var(--cobalt)"/>` : '';
     bars+=`<rect x="${x}" y="${base-bh}" width="${bw}" height="${bh}" rx="8" fill="${col}"/>
+      ${marker}
       <text x="${x+bw/2}" y="${base-bh-7}" text-anchor="middle" font-size="12.5" font-weight="800" fill="#16264C">${a.pct}</text>
-      <text x="${x+bw/2}" y="${base+16}" text-anchor="middle" font-size="10.5" fill="#3A4A73">P${a.paper+1}${a.mode==='section'?'·'+SEC[a.sec].em:''}</text>`;
+      <text x="${x+bw/2}" y="${base+16}" text-anchor="middle" font-size="10.5" fill="#3A4A73">${a.tag}</text>`;
   });
   const ty = base-TARGET/100*120;
   const chart = `<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">
@@ -567,19 +686,28 @@ function progress(){
     <text x="${W-10}" y="${ty-6}" text-anchor="end" font-size="11" font-weight="700" fill="var(--gold)">target ${TARGET}%</text>
     ${bars}</svg>`;
 
-  // per-section averages (full + section attempts)
-  const agg={}; SECTIONS.forEach(s=>agg[s.key]={c:0,n:0});
+  // per-section averages (app full+section attempts, plus logged section mocks)
+  const agg={}; SECTIONS.forEach(s=>agg[s.key]={c:0,n:0,sum:0,cnt:0});
   history.forEach(a=>{ Object.keys(a.secScores).forEach(k=>{ agg[k].c+=a.secScores[k].c; agg[k].n+=a.secScores[k].n; }); });
-  const chips = SECTIONS.filter(s=>agg[s.key].n>0).map(s=>{
-    const p=Math.round(100*agg[s.key].c/agg[s.key].n);
-    return `<span class="chip b-${s.cls}">${s.em} ${p}%</span>`;
+  paperlog.forEach(p=>{ if(p.sec && agg[p.sec]){ agg[p.sec].sum+=p.pct; agg[p.sec].cnt++; } });
+  const chips = SECTIONS.filter(s=>agg[s.key].n>0||agg[s.key].cnt>0).map(s=>{
+    const appPct = agg[s.key].n>0 ? 100*agg[s.key].c/agg[s.key].n : null;   // app: by questions
+    const papPct = agg[s.key].cnt>0 ? agg[s.key].sum/agg[s.key].cnt : null;  // paper: by logged %
+    let p;
+    if(appPct!==null && papPct!==null)
+      p = (appPct*agg[s.key].n + papPct*agg[s.key].cnt) / (agg[s.key].n + agg[s.key].cnt);
+    else p = (appPct!==null ? appPct : papPct);
+    return `<span class="chip b-${s.cls}">${s.em} ${Math.round(p)}%</span>`;
   }).join('');
 
-  const best = Math.max(...history.map(a=>a.pct));
-  const rows = history.slice().reverse().slice(0,20).map(a=>{
+  const allPcts = timeline.map(t=>t.pct);
+  const best = allPcts.length?Math.max(...allPcts):0;
+  const rows = timeline.slice().reverse().slice(0,25).map(a=>{
     const d=new Date(a.date);
-    const what = a.mode==='full'?'Full mock':SEC[a.sec].name;
-    return `<div class="secrow"><span>${d.getDate()}/${d.getMonth()+1} · Paper ${a.paper+1} · ${what}</span>
+    let what;
+    if(a.src==='paper') what = 'Paper mock '+a.tag;
+    else what = a.tag;
+    return `<div class="secrow"><span>${d.getDate()}/${d.getMonth()+1} · ${a.src==='paper'?'📄 ':''}${what}</span>
       <span class="sc" style="color:${a.pct>=TARGET?'var(--ok)':(a.pct>=70?'var(--gold)':'var(--bad)')};">${a.pct}%</span></div>`;
   }).join('');
 
@@ -587,14 +715,14 @@ function progress(){
     <div class="topbar"><button class="back" id="bk">←</button><div class="grow">My progress</div></div>
     <div class="card"><b>Recent scores</b><div class="chart">${chart}</div>
       <div class="avgchips">${chips}</div>
-      <div class="sub" style="margin-top:10px;">Best so far: <b>${best}%</b> · Section chips show your average per subject.</div></div>
+      <div class="sub" style="margin-top:10px;">Best so far: <b>${best}%</b> · Chips show your average per subject. A blue dot marks a logged paper mock.</div></div>
     <div class="card"><b>History</b>${rows}</div>
     <button class="ghost" id="reset" style="color:var(--bad);">Reset all progress</button>
   `);
   $('#bk').onclick = home;
   $('#reset').onclick = ()=>{
-    if(confirm('Delete all scores and mistake history? This cannot be undone.')){
-      history=[]; wrong=[]; saveAll(); progress();
+    if(confirm('Delete all scores, logged mocks and mistake history? This cannot be undone.')){
+      history=[]; wrong=[]; paperlog=[]; streak={count:0,last:null}; saveAll(); progress();
     }
   };
 }
